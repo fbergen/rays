@@ -3,7 +3,7 @@ use hitrecord::HitRecord;
 use hitable::Hitable;
 
 pub struct HitableList {
-    pub list: Vec<Box<Hitable>>,
+    pub list: Vec<Box<dyn Hitable>>,
 }
 
 impl Hitable for HitableList {

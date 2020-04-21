@@ -23,7 +23,7 @@ use material::Lambertian;
 use material::Dielectric;
 
 fn random_scene() -> HitableList {
-	let mut hitable_list:Vec<Box<Hitable>> = vec![Box::new(Sphere{
+	let mut hitable_list:Vec<Box<dyn Hitable>> = vec![Box::new(Sphere{
         center: Vector3::new(0.0, -1000.0, 0.0), 
         radius: 1000.0, 
         material: Box::new(Lambertian{albedo: Vector3::new(0.5, 0.5, 0.5)})
@@ -90,7 +90,7 @@ fn random_scene() -> HitableList {
     HitableList{list: hitable_list}
 }
 
-fn color(ray:&Ray, world:&Hitable, depth:i32) -> Vector3<f64> {
+fn color(ray:&Ray, world:&dyn Hitable, depth:i32) -> Vector3<f64> {
     let rec = world.hit(ray, 0.001, f64::MAX);
     match rec {
         Some(rec_val) => {
